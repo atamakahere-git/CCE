@@ -160,6 +160,14 @@ enum cce_board {
 
 enum { FALSE, TRUE };
 
+typedef struct {
+  ccint move;
+  ccint castle_perm;
+  ccint en_pas;
+  ccint fifty_moves;
+  ccuint pos_key;
+} CCE_UNDO;
+
 // Representation of a board
 typedef struct {
   // All pieces on the board
@@ -208,6 +216,9 @@ typedef struct {
   // Number of minor pieces (Bishops and Knights)
   // 0: white, 1: Black, 2: Both
   ccint min_pieces[3];
+
+  // Preserve history!
+  CCE_UNDO history[MAXGAMEMOVES];
 } CCE_BOARD;
 
 #endif /* ifndef BOARD_H */
