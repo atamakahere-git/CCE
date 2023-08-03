@@ -185,10 +185,10 @@ typedef struct {
   // Check for castling permission
   ccint catle_perm;
 
-  // How many half moves
+  // Current move number
   ccint ply;
 
-  // How many half moves in whole games
+  // Last move number
   ccint his_ply;
 
   // Unique key generated for each position
