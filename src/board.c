@@ -30,8 +30,14 @@
 #define BOARD_H
 
 #include <stdint.h>
+
 #define NAME "CCE 0.1"
+// Number of squares in board (including overflow)
 #define BRD_SQ_NUM 120
+
+// Maximum number of moves allowed per game
+// 2048 half-moves(1024 full moves) should be enough to hold the game.
+#define MAXGAMEMOVES 2048
 
 // Represents a single square in board
 typedef int brd_sq;
@@ -48,10 +54,10 @@ typedef uint32_t ccuint;
 // R: Rook
 // Q: Queen
 // K: King
-enum piece { EMPTY, P, N, B, R, Q, K, p, n, b, r, q, k };
+enum cce_piece { EMPTY, P, N, B, R, Q, K, p, n, b, r, q, k };
 
 // Files
-enum file {
+enum cce_file {
   FILE_A,
   FILE_B,
   FILE_C,
@@ -64,7 +70,7 @@ enum file {
 };
 
 // Ranks
-enum rank {
+enum cce_rank {
   RANK_1,
   RANK_2,
   RANK_3,
@@ -77,10 +83,10 @@ enum rank {
 };
 
 // Colors
-enum color { WHITE, BLACK };
+enum cce_color { WHITE, BLACK };
 
 // Castling permission
-enum castling {
+enum cce_castling {
   // White King castling, King side
   WKCA = 1,
   // White King castling, Queen side
@@ -92,7 +98,7 @@ enum castling {
 };
 
 // Board address to number mapping
-enum {
+enum cce_board {
   A1 = 21,
   B1,
   C1,
@@ -202,6 +208,6 @@ typedef struct {
   // Number of minor pieces (Bishops and Knights)
   // 0: white, 1: Black, 2: Both
   ccint min_pieces[3];
-} S_BOARD;
+} CCE_BOARD;
 
 #endif /* ifndef BOARD_H */
