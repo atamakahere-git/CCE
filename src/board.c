@@ -44,8 +44,8 @@ typedef int brd_sq;
 typedef uint64_t piece_pos;
 // TODO(tanveerraza789): replace with std impl in C23
 typedef _Bool bool;
-typedef int32_t ccint;
-typedef uint32_t ccuint;
+typedef int64_t ccint;
+typedef uint64_t ccuint;
 
 // Uppercase means white, lowercase means black.
 // P: Pawn
