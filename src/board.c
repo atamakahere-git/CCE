@@ -9,9 +9,8 @@
  *    3|  41  42  43  44  45  46  47  48
  *    4|  51  52  53  54  55  56  57  58
  *    5|  61  62  63  64  65  66  67  68
- *    6|  71  72  73  74  75  76  77  78
- *    7|  81  82  83  84  85  86  87  88
- *    8|  91  92  93  94  95  96  97  98
+ *    6|  71  72  73  74  75  76  77  78 7|  81  82  83  84  85  86  87  88 8|
+ * 91  92  93  94  95  96  97  98
  *
  * The board representation ranges between 0-119, the above shown positions
  * represents position on board while others are overflow. All pieces after one
@@ -38,8 +37,8 @@ typedef int brd_sq;
 typedef uint64_t piece_pos;
 // TODO(tanveerraza789): replace with std impl in C23
 typedef _Bool bool;
-typedef int64_t ccint;
-typedef uint64_t ccuint;
+typedef int32_t ccint;
+typedef uint32_t ccuint;
 
 // Uppercase means white, lowercase means black.
 // P: Pawn
@@ -78,6 +77,18 @@ enum rank {
 
 // Colors
 enum color { WHITE, BLACK };
+
+// Castling permission
+enum castling {
+  // White King castling, King side
+  WKCA = 1,
+  // White King castling, Queen side
+  WQCA = 2,
+  // Black King castling, King side
+  BKCA = 4,
+  // Black King castling, Queen side
+  BQCA = 8,
+};
 
 // Board address to number mapping
 enum {
@@ -163,6 +174,9 @@ typedef struct {
 
   // Keep track of no. of moves, game draws after 50 moves.
   ccint fifty_moves;
+
+  // Check for castling permission
+  ccint catle_perm;
 
   // How many half moves
   ccint ply;
