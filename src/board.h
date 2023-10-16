@@ -19,11 +19,6 @@
  *
  *
  *
- *
- *
- *
- *
- *
  */
 
 #ifndef BOARD_H
@@ -38,6 +33,18 @@
 // Maximum number of moves allowed per game
 // 2048 half-moves(1024 full moves) should be enough to hold the game.
 #define MAXGAMEMOVES 2048
+
+// Globals
+
+extern int sq120tosq64[BRD_SQ_NUM];
+extern int sq64tosq120[64];
+extern void init_all();
+extern void init_sq120tosq64();
+
+// Macros
+
+// File,Rank to square number
+#define FR2SQ(f, r) ((21 + (f)) + ((r)*10))
 
 // Represents a single square in board
 typedef int brd_sq;

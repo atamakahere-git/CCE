@@ -1,4 +1,4 @@
 engine:
-	gcc -Wall src/main.c -o build/cce
+	gcc -Wall src/main.c src/init.c -o build/cce
 
 
