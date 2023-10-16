@@ -25,6 +25,25 @@
 #define BOARD_H
 
 #include <stdint.h>
+#include <stdlib.h>
+
+// For debug prints
+#define DEBUG
+
+// A simple debug assert statement
+#ifndef DEBUG
+#define ASSERT(n)
+#else
+#define ASSERT(n)                                                              \
+  if (!(n)) {                                                                  \
+    printf("%s - Failed\n", #n);                                               \
+    printf("On %s", __DATE__);                                                 \
+    printf("At %s", __TIME__);                                                 \
+    printf("In File %s", __FILE__);                                            \
+    printf("At Line %s", __LINE__);                                            \
+    exit(1);                                                                   \
+  }
+#endif
 
 #define NAME "CCE 0.1"
 // Number of squares in board (including overflow)
@@ -226,6 +245,12 @@ typedef struct {
 
   // Preserve history!
   CCE_UNDO history[MAXGAMEMOVES];
+
+  // Piece lists
+  // 13 type of pieces, max 10 for each type
+  // Eg: piece_list[wN][0] = E1, White knight to E1
+  int piece_list[13][10];
+
 } CCE_BOARD;
 
 #endif /* ifndef BOARD_H */
